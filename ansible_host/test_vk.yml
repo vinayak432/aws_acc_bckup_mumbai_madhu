@@ -1,0 +1,33 @@
+---
+- hosts: [servers_grp1]
+  tasks:
+    - name: install_wget
+      when: ansible_distribution == "Ubuntu"
+      apt:
+        name: ["wget", "maven"]
+        state: present
+      become: yes
+
+    - name: install_wget_in_centOS
+      when: ansible_distribution == "CentOS"
+      yum:
+        name: wget
+        state: present
+      become: yes
+
+    - name: copy_file
+      copy:
+        src: /home/ubuntu/filevk
+        dest: /home/ubuntu/
+
+    - name: create_file
+      file:
+        dest: /home/ubuntu/newfile.txt
+        state: touch
+
+    - name: execute_shell_command
+      shell:
+        "ls /home/ubuntu"
+      register: ls_files
+    - debug:
+        var: ls_files.stdout_lines

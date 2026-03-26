@@ -1,0 +1,13 @@
+pipeline {
+    agent { label 'slave5' }
+
+    stages {
+        stage('Run Ansible Playbook') {
+            steps {
+                sh '''
+                  ansible-playbook -i inventory run_tom.yml
+                '''
+            }
+        }
+    }
+}

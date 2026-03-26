@@ -1,0 +1,24 @@
+---
+- hosts: all
+  force_handlers: yes
+  ignore_unreachable: true
+  tasks:
+    - name: install_packages
+      apt:
+        name: ["wget", "maven"]
+        state: presents
+      become: yes
+      ignore_errors: yes
+      notify: show_msg
+
+    - name: Creating_file
+      file: 
+        dest: /home/ubuntu/1.txt
+        state: tou
+      ignore_errors: yes
+      notify: show_msg
+
+  handlers:
+    - name: show_msg
+      debug:
+        msg: "Listed files"

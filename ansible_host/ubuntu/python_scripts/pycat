@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+
+import argparse
+parser = argparse.ArgumentParser(description="Python based command to read a file")
+parser.add_argument("file", help="The name or path of the file to read.") 
+
+parser.add_argument("--lines", "-l", type=int, help="The number of lines to read") 
+#parser.add_argument("--version","-v", action='version',version="pycat 1.0 written by lohitesh')
+args = parser.parse_args()
+print(args.file)
+print(args.lines)
+
+try:
+
+    with open(args.file,'r') as file1:
+        content=file1.readlines()
+
+    limit=args.lines
+    if limit:
+        content=content[0:limit]
+    for line in content:
+        print(line.strip())
+
+except FileNotFoundError: 
+    print(f"{args.file} doesn't exists ")

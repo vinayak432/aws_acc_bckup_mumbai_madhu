@@ -1,0 +1,6 @@
+---
+# handlers file for tomacat_config
+
+- name: show_msg
+  debug:
+    msg: "Tomacat 11"

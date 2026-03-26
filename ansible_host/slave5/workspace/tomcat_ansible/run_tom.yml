@@ -1,0 +1,5 @@
+---
+- name: roles
+  hosts: servers_grp1
+  roles:
+    - tomacat_config

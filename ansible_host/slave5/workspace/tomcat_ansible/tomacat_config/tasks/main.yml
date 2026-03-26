@@ -1,0 +1,44 @@
+---
+# tasks file for tomacat_config
+
+- name: checking the dependency - java
+  shell:
+    "java --version"
+
+- name: install java
+  shell: |
+    apt-get update
+    apt-get install -y openjdk-17-jdk
+
+- name: verify java installation
+  shell: |
+    java -version  
+
+- name: Add group "{{ tomcat_group }}"
+  group:
+    name: "{{ tomcat_group }}"
+    state: present
+
+- name: Add user "{{ tomcat_user }}" and assign to group
+  user:
+    name: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+    create_home: yes
+    state: present
+
+
+- name: Downloading tomcat 11
+  shell: |
+    cd /opt
+    wget https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.15/bin/apache-tomcat-11.0.15.tar.gz
+
+- name: extract tomcat
+  shell: |
+    cd /opt
+    tar -xvzf apache-tomcat-11.0.15.tar.gz  
+   
+- name: start tomcat server
+  shell: |
+   cd /opt/apache-tomcat-11.0.15/bin
+   chmod +x *.sh
+   ./startup.sh

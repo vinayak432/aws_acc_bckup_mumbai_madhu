@@ -1,0 +1,13 @@
+pipeline {
+    agent { label 'java' }
+
+    stages {
+        stage('Run Ansible Playbook') {
+            steps {
+                sh '''
+                  ansible-playbook run_tom.yml
+                '''
+            }
+        }
+    }
+}

@@ -1,0 +1,22 @@
+---
+- hosts: all
+  tasks:
+    - name: wrong package install
+      apt: 
+        name: git
+        state: present
+      ignore_errors: yes
+      register: error_message
+    - name: fail if failed status
+      fail:
+        msg: "The state is failed"
+      when: error_message.failed == true
+    - name: error with failed_when
+      copy:
+        src: /home/ubuntu/test1000.txt
+        dest: /home/ubuntu
+      register: copy_res
+      failed_when:
+        - copy_res.failed == true
+        - '"could not find or access" in copy_res.msg'
+      any_errors_fatal: false

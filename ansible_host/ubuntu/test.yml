@@ -1,0 +1,12 @@
+---
+- hosts: [servers_grp1]
+  tasks:
+    - name: package installation
+      apt:
+        name: git
+        state: absent
+      notify: show_msg
+  handlers:
+    - name: show_msg
+      debug:
+        msg: "Listed files"
