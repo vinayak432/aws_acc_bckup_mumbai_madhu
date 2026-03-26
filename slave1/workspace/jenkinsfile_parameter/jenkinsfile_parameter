@@ -1,0 +1,43 @@
+pipeline {
+   // agent { label 'Java' }
+agent none
+parameters {
+string(name: 'hwrd', defaultValue: '', description: 'A sample string parameter')
+booleanParam(name: 'SAMPLE_BOOLEAN', defaultValue: true, description: 'A boolean parameter')
+choice(name: 'hwrd2', choices: ['package', 'compile','install','deploy'], description: 'Choose one option')
+}
+//withCredentials([usernamePassword(credentialsId: '5cdee050-f566-4b06-bbac-6aa766be463f', usernameVariable: 'vinayak432', passwordVariable: 'REDACTED_PASSWORD')]) {sh 'echo "password verifiedd"'}
+stages {
+        stage('Hello world war') {
+	parallel {
+stage('withcred') {
+		agent { label 'Java' }
+     steps {
+withCred([usernamePassword(credentialsId: '08529b15-9624-483c-8c85-16bb342394d4', usernameVariable: 'slave1', passwordVariable: 'REDACTED_PASSWORD')])
+       
+          sh 'echo "password verifiedd"'
+            }
+        }
+        stage('checkout') {
+		agent { label 'Java' }
+            steps {
+                sh "rm -rf hello-world-war"
+              sh  "git clone https://github.com/vinayak432/hello-world-war/"
+            }
+        }
+         stage('Build') {
+            agent { label 'Java' }
+		steps {
+                sh "mvn $hwrd $hwrd2" 
+            }
+        }
+	stage('Deploy') {
+            agent { label 'Java' }
+		steps {
+		sh "sudo cp /home/slave1/workspace/jenkinsfile_parameter/target/hello-world-war-1.0.2.war /opt/apache-tomcat-10.1.49/webapps"
+    			}
+				}
+			}
+		}
+  	}
+}

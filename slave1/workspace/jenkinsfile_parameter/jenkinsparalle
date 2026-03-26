@@ -1,0 +1,30 @@
+pipeline {
+   // agent { label 'Java' }
+agent none
+ stages {
+        stage('Hello world war') {
+	parallel {
+        stage('checkout') {
+		agent { label 'Java' }
+            steps {
+                sh "rm -rf hello-world-war"
+              sh  "git clone https://github.com/vinayak432/hello-world-war/"
+            }
+        }
+         stage('Build') {
+            agent { label 'Java' }
+		steps {
+                sh "mvn clean package"
+                
+            }
+        }
+	stage('Deploy') {
+            agent { label 'Java' }
+		steps {
+		sh "sudo cp /home/slave1/workspace/jenkinsparalle/target/hello-world-war-1.0.2.war /opt/apache-tomcat-10.1.49/webapps"
+    			}
+				}
+			}
+		}
+	}
+}

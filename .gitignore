@@ -1,0 +1,60 @@
+# secrets
+.env
+*.pem
+*.key
+id_rsa
+id_dsa
+authorized_keys
+
+# aws / ssh
+**/.aws/
+**/.ssh/
+
+# nested repos
+**/.git/
+
+# logs
+*.log
+
+# shell history / profiles
+**/.bash_history
+**/.bashrc
+**/.bash_profile
+**/.bash_logout
+**/.profile
+
+# cache / local config
+**/.cache/
+**/.config/
+**/.m2/
+**/.npm/
+**/.gradle/
+
+# python
+__pycache__/
+*.pyc
+
+# java
+target/
+*.jar
+*.war
+
+# node
+node_modules/
+
+# build
+build/
+dist/
+
+# runtime
+**/Jenkins/
+**/secrets/
+**/webapps/
+# remoting / temp / editor junk
+**/remoting/
+*.swp
+**/.gitconfig
+**/.lesshst
+**/.selected_editor
+**/.sudo_as_admin_successful
+**/.viminfo

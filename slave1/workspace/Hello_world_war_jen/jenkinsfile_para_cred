@@ -1,0 +1,40 @@
+pipeline {
+   // agent { label 'Java' }
+agent none
+parameters {
+string(name: 'hwrd', defaultValue: 'clean', description: 'A sample string parameter')
+booleanParam(name: 'SAMPLE_BOOLEAN', defaultValue: true, description: 'A boolean parameter')
+choice(name: 'hwrd2', choices: ['package', 'compile','install','deploy'], description: 'Choose one option')
+}
+stages {
+        stage('Hello world war') {
+	parallel {
+        stage('checkout') {
+		agent { label 'Java' }
+            steps {
+withCredentials([usernamePassword(credentialsId: '5cdee050-f566-4b06-bbac-6aa766be463f', usernameVariable: 'USER', passwordVariable: 'vinayak_PASS')]){ sh 'echo "Credentials verified"'
+                sh "rm -rf hello-world-war"
+              sh  "git clone https://github.com/vinayak432/hello-world-war/"
+            }
+}
+        }
+         stage('Build') {
+            agent { label 'Java' }
+		steps { 
+withCredentials([sshUserPrivateKey(credentialsId: '08529b15-9624-483c-8c85-16bb342394d4',usernameVariable: 'SSH_USER', keyFileVariable: 'SSH_KEY')]){ sh 'echo "ssh_username=$SSH_USER; SSH _KEY=$SSH_KEY"'
+                sh "mvn $hwrd $hwrd2" 
+            }
+        }
+}
+	stage('Deploy') {
+            agent { label 'Java' }
+		steps {
+withCredentials([usernamePassword(credentialsId: '5cdee050-f566-4b06-bbac-6aa766be463f', usernameVariable: 'USER', passwordVariable: 'PASS')]){ sh 'echo "Credentials verified"'
+		sh "sudo cp /home/slave1/workspace/jenkinsfile_para_cred/target/hello-world-war-1.0.2.war /opt/apache-tomcat-10.1.49/webapps"
+    			}
+				}
+}
+			}
+		}
+  	}
+}
