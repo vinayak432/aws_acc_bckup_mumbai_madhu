@@ -1,0 +1,6 @@
+#!/bin/bash
+
+name=Vinayak
+place=Davanagere
+echo "My name is $name"
+echo "I am from $place"

@@ -1,0 +1,16 @@
+total 24
+-rw-rw-r-- 1 ubuntu ubuntu    0 Oct 15 12:37 1.html
+-rw-rw-r-- 1 ubuntu ubuntu    0 Oct 15 12:37 1.txt
+-rw-rw-r-- 1 ubuntu ubuntu    0 Oct 14 11:05 18k
+-rw-rw-r-- 1 ubuntu ubuntu    0 Oct 15 12:37 2.html
+-rw-rw-r-- 1 ubuntu ubuntu    0 Oct 15 12:37 2.txt
+-rw-rw-r-- 1 ubuntu ubuntu    0 Oct 15 12:22 3
+-rw-rw-r-- 1 ubuntu ubuntu    0 Oct 15 00:58 3.txt
+drwxrwxr-x 5 ubuntu ubuntu 4096 Oct 14 10:33 dir1
+drwxrwxr-x 2 ubuntu ubuntu 4096 Oct 12 01:14 dir2
+-rw-rw-r-- 1 ubuntu ubuntu  234 Oct 14 10:54 file1
+-rw-r-x--x 1 ubuntu ubuntu    0 Oct 15 12:48 file100
+-rw-rw-r-- 1 ubuntu ubuntu    0 Oct 14 10:21 file101
+-rw-rw-r-- 1 ubuntu ubuntu   35 Oct 13 02:58 file2
+-rw-rw-r-- 1 ubuntu ubuntu    6 Oct 12 01:14 file3
+-rw-rw-r-- 1 ubuntu ubuntu  290 Oct 15 11:57 filevk

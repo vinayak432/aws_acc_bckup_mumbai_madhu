@@ -1,0 +1,22 @@
+#!/bin/bash
+
+echo "Enter the integer value"
+read num1
+echo "Enter the second value"
+read num2
+
+sum=`expr $num1 + $num2`
+echo "The sum of two is integers is $sum"
+
+prod=`expr $num1 \* $num2`
+echo "The product of two integers is $prod"
+
+sub=`expr $num1 - $num2`
+echo "the subtraction of two integers is $sub"
+
+div=`expr $num1 / $num2`
+echo "the division of two intgers is $div"
+
+mod=`expr $num1 % $num2`
+echo "the modolous value is $mod"
+

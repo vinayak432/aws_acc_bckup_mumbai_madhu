@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Enter the integer value"
+read num1
+echo "Enter the integer value"
+read num2
+sub=num1-num2
+sub=`expr $num1 - $num2`
+echo "the subtraction of two no is $sub"
+

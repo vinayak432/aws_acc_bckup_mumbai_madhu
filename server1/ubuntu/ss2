@@ -1,0 +1,6 @@
+#!/bin/bash
+hi all
+echo Good morning
+Day1 of shell scripting
+give the execute perission for the user
+execute the script
